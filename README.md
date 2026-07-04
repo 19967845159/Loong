@@ -4,7 +4,7 @@
 
 ## 在线访问
 
-打开 [AiforU.html](aiforu.html)，用浏览器直接查看完整课程。
+打开 [AiforU.html](AiforU.html)，用浏览器直接查看完整课程。
 
 ## 课程简介
 
