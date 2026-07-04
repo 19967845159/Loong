@@ -14,21 +14,65 @@ body{font-family:"Noto Sans SC","WenQuanYi Micro Hei","PingFang SC","Microsoft Y
 .back-to-top{position:fixed;bottom:30px;right:30px;width:44px;height:44px;background:#3b82f6;color:#fff;border:none;border-radius:50%;font-size:20px;cursor:pointer;z-index:900;opacity:0;transform:translateY(20px);transition:all .3s ease;box-shadow:0 4px 12px rgba(59,130,246,0.3)}
 .back-to-top.visible{opacity:1;transform:translateY(0)}.back-to-top:hover{background:#2563eb;transform:translateY(-2px)}
 .layout{display:flex;min-height:100vh}
-.sidebar{position:fixed;top:0;left:0;width:220px;height:100vh;background:#fff;border-right:1px solid #e2e8f0;overflow-y:auto;z-index:800;padding:20px 0;box-shadow:2px 0 8px rgba(0,0,0,0.04)}
-.sidebar-header{padding:0 14px 16px;font-size:16px;font-weight:700;color:#3b82f6;border-bottom:1px solid #e2e8f0;margin-bottom:8px}
+.sidebar{position:fixed;top:0;left:0;width:220px;height:100vh;background:#fff;border-right:1px solid #e2e8f0;overflow-y:auto;z-index:800;padding:20px 0;box-shadow:2px 0 24px rgba(0,0,0,0.08),0 0 1px rgba(0,0,0,0.05);-webkit-overflow-scrolling:touch;backdrop-filter:blur(20px)}
+.sidebar-header{padding:0 14px 16px;font-size:16px;font-weight:700;color:#3b82f6;border-bottom:1px solid #e2e8f0;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between}
+.sidebar-close{display:none;background:none;border:none;font-size:18px;color:#64748b;cursor:pointer;padding:4px;line-height:1}
 .nav-section{padding:6px 14px 3px;font-size:10px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:0.5px;margin-top:6px}
-.nav-link{display:flex;align-items:center;padding:5px 14px 5px 22px;color:#64748b;text-decoration:none;font-size:11px;transition:all .2s;border-left:3px solid transparent;cursor:pointer;gap:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.nav-link:hover{color:#3b82f6;background:#eff6ff}.nav-link.active{color:#3b82f6;background:#eff6ff;border-left-color:#3b82f6;font-weight:600}
+.nav-link{display:flex;align-items:center;padding:5px 14px 5px 22px;color:#64748b;text-decoration:none;font-size:11px;transition:all .2s;border-left:3px solid transparent;cursor:pointer;gap:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;position:relative}
+.nav-link:hover{color:#3b82f6;background:#eff6ff}.nav-link.active{color:#3b82f6;background:#eff6ff;border-left-color:#3b82f6;font-weight:600;padding-right:12px}
+.nav-link.active::after{content:'';position:absolute;right:8px;top:50%;transform:translateY(-50%);width:6px;height:6px;border-radius:50%;background:#3b82f6;box-shadow:0 0 6px rgba(59,130,246,0.5)}
 .nav-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
 .main{margin-left:220px;flex:1;max-width:100%;padding:40px 48px 80px;min-width:0}
-.hero{text-align:center;padding:60px 20px;margin-bottom:48px}
-.hero h1{font-size:42px;font-weight:800;background:linear-gradient(135deg,#3b82f6,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:12px}
-.hero p{font-size:18px;color:#64748b;max-width:600px;margin:0 auto}
-.hero-signature{font-size:16px;font-style:italic;color:#94a3b8;margin:8px auto 0;letter-spacing:2px;font-family:"STKaiti","KaiTi","楷体","Palatino Linotype","Georgia",serif}
-.hero-tags{display:flex;justify-content:center;gap:8px;margin-top:20px;flex-wrap:wrap}
+/* ===== Hero Dark Section ===== */
+.hero-dark{position:relative;overflow:hidden;background:#050510;padding:80px 40px 60px;text-align:center;margin-left:-48px;margin-right:-48px;margin-top:-40px}
+.hero-dark canvas,.hero-dark .hero-orb,.hero-dark .hero-grid,.hero-dark .hero-scan{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}
+.hero-dark canvas{z-index:0}
+.hero-dark .hero-orb{border-radius:50%;filter:blur(80px);opacity:0.4;z-index:0}
+.hero-orb-1{width:400px;height:400px;background:radial-gradient(circle,#5B5FEF,transparent 70%);top:-10%;left:-5%;animation:orbFloat1 8s ease-in-out infinite}
+.hero-orb-2{width:350px;height:350px;background:radial-gradient(circle,#8B5CF6,transparent 70%);bottom:-10%;right:-5%;animation:orbFloat2 10s ease-in-out infinite}
+.hero-orb-3{width:250px;height:250px;background:radial-gradient(circle,#06B6D4,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);animation:orbFloat3 12s ease-in-out infinite;opacity:0.2}
+@keyframes orbFloat1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,30px) scale(1.1)}}
+@keyframes orbFloat2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-30px,-40px) scale(1.15)}}
+@keyframes orbFloat3{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.3)}}
+.hero-grid{background-image:linear-gradient(rgba(91,95,239,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(91,95,239,0.03) 1px,transparent 1px);background-size:60px 60px;z-index:0}
+.hero-scan{display:none}
+.hero-content{position:relative;z-index:2}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 18px;border:1px solid rgba(139,92,246,0.3);border-radius:9999px;margin-bottom:24px;background:rgba(139,92,246,0.06);backdrop-filter:blur(10px);animation:badgePulse 3s ease-in-out infinite}
+.hero-badge-dot{width:8px;height:8px;border-radius:50%;background:#8B5CF6;box-shadow:0 0 8px rgba(139,92,246,0.6);animation:dotPulse 2s ease-in-out infinite}
+.hero-badge-text{font-size:12px;font-weight:500;color:rgba(199,210,254,0.9);letter-spacing:2px;text-transform:uppercase}
+@keyframes badgePulse{0%,100%{border-color:rgba(139,92,246,0.3)}50%{border-color:rgba(139,92,246,0.5)}}
+@keyframes dotPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+.hero-title-wrap{display:flex;align-items:center;justify-content:center;gap:20px;margin-bottom:28px}
+.hero-side-line{height:1px;width:80px;position:relative;overflow:visible}
+.hero-side-line::before{content:'';position:absolute;top:0;width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(139,92,246,0.6),transparent)}
+.hero-side-line::after{content:'';position:absolute;top:-3px;width:8px;height:8px;background:#8B5CF6;border-radius:50%;box-shadow:0 0 10px rgba(139,92,246,0.6)}
+.hero-side-left::after{right:0}
+.hero-side-right::after{left:0}
+.hero-energy{position:absolute;top:-1px;height:3px;border-radius:2px;background:linear-gradient(90deg,transparent,rgba(139,92,246,0.8),#C084FC,transparent);animation:energyFlow 2s ease-in-out infinite}
+.hero-side-left .hero-energy{right:0;animation-name:energyFlowLeft}
+.hero-side-right .hero-energy{left:0;animation-name:energyFlowRight}
+@keyframes energyFlowLeft{0%{width:0;opacity:0}50%{width:60px;opacity:1}100%{width:0;opacity:0;right:100%}}
+@keyframes energyFlowRight{0%{width:0;opacity:0}50%{width:60px;opacity:1}100%{width:0;opacity:0;left:100%}}
+.hero-neon-title{font-size:68px;font-weight:900;letter-spacing:2px;line-height:1.15;display:inline-flex;align-items:baseline;margin-bottom:0}
+.hero-char{display:inline-block;position:relative;animation:charFloat 3s ease-in-out infinite;cursor:default;transition:transform 0.3s ease}
+.hero-char:hover{transform:translateY(-8px) scale(1.08) !important}
+@keyframes charFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.hero-rainbow-line{display:block;height:3px;margin-top:8px;border-radius:2px;background:linear-gradient(90deg,#F472B6,#22D3EE,#A78BFA,#FBBF24,#34D399);background-size:200% 100%;animation:rainbowSlide 3s linear infinite;opacity:0.7}
+@keyframes rainbowSlide{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+.hero-sub-dark{font-size:16px;line-height:1.8;color:rgba(199,210,254,0.7);font-weight:400;max-width:600px;margin:0 auto 24px;letter-spacing:0.5px}
+.hero-sub-line{display:block;opacity:0;animation:fadeSlideUp 0.8s ease-out forwards}
+.hero-sub-line:nth-child(2){animation-delay:0.2s}
+@keyframes fadeSlideUp{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+.hero-sig-dark{font-size:14px;color:rgba(199,210,254,0.4);font-style:italic;letter-spacing:1px;font-family:"STKaiti","KaiTi","楷体","Palatino Linotype","Georgia",serif;opacity:0;animation:fadeSlideUp 0.8s ease-out 0.5s forwards;margin-bottom:24px}
+.hero-tags-dark{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;opacity:0;animation:fadeSlideUp 0.8s ease-out 0.8s forwards}
 .hero-tag{padding:4px 14px;border-radius:20px;font-size:13px;font-weight:500}
-.toc{margin-bottom:56px}.toc h2{font-size:24px;font-weight:700;margin-bottom:24px;color:#1e293b}
-.toc-group{margin-bottom:24px}.toc-group-title{font-size:13px;font-weight:600;margin-bottom:10px;padding-left:4px;display:flex;align-items:center;gap:6px}
+.toc{margin-bottom:56px;margin-top:0;padding-top:40px}.toc h2{font-size:24px;font-weight:700;margin-bottom:24px;color:#1e293b}
+.toc-group{margin-bottom:24px;padding:12px;border-radius:12px;border:2px solid transparent;transition:all .3s ease}
+.toc-group.active{background:#fff;box-shadow:0 4px 20px rgba(0,0,0,0.08)}
+.toc-group-title{font-size:13px;font-weight:600;margin-bottom:10px;padding-left:4px;display:flex;align-items:center;gap:6px;transition:opacity .3s}
+.toc-group:not(.active) .toc-group-title{opacity:0.5}
+.toc-group:not(.active) .toc-card{opacity:0.5}
+.toc-group.active .toc-card{opacity:1}
 .toc-group-title .group-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
 .toc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
 .toc-card{background:#fff;border-radius:8px;padding:10px;text-decoration:none;color:inherit;transition:all .25s;cursor:pointer;border:1px solid #e2e8f0;position:relative;overflow:hidden}
@@ -102,20 +146,23 @@ body{font-family:"Noto Sans SC","WenQuanYi Micro Hei","PingFang SC","Microsoft Y
 .callout.tip .callout-title{color:#10b981}
 .callout.warning{background:#fefce8;border-left-color:#f59e0b}
 .callout.warning .callout-title{color:#f59e0b}
-@media(max-width:900px){.sidebar{transform:translateX(-100%);transition:transform .3s ease;z-index:999}.sidebar.open{transform:translateX(0)}.menu-toggle{display:block}.main{margin-left:0;padding:24px 16px 60px}.hero h1{font-size:28px}.toc-grid{grid-template-columns:repeat(2,1fr)}.card{padding:24px 20px}}
+@media(max-width:900px){.sidebar{transform:translateX(-100%);transition:transform .3s cubic-bezier(0.4,0,0.2,1);z-index:999}.sidebar.open{transform:translateX(0)}.sidebar-close{display:block}.menu-toggle{display:block}.main{margin-left:0;padding:24px 16px 60px}.hero-dark{padding:60px 20px 40px;margin-left:-20px;margin-right:-20px;margin-top:-20px}.hero-neon-title{font-size:42px}.hero-side-line{width:50px}.hero-orb-1{width:250px;height:250px}.hero-orb-2{width:200px;height:200px}.hero-orb-3{width:150px;height:150px}.toc-grid{grid-template-columns:repeat(2,1fr)}.card{padding:24px 20px}}
 @media(max-width:600px){.toc-grid{grid-template-columns:1fr}}
-.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.3);z-index:998}.sidebar-overlay.show{display:block}
+.sidebar-overlay{opacity:0;pointer-events:none;position:fixed;inset:0;background:rgba(0,0,0,0.3);z-index:998;transition:opacity .3s cubic-bezier(0.4,0,0.2,1)}.sidebar-overlay.show{opacity:1;pointer-events:auto}
+.toast{position:fixed;bottom:40px;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(30,41,59,0.92);color:#fff;padding:10px 24px;border-radius:10px;font-size:14px;z-index:1001;opacity:0;pointer-events:none;transition:all .3s cubic-bezier(0.4,0,0.2,1);backdrop-filter:blur(10px);box-shadow:0 8px 32px rgba(0,0,0,0.2)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
+<div class="toast" id="toast"></div>
 <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()">☰</button>
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleMenu()"></div>
 <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <div class="layout">
 <nav class="sidebar" id="sidebar">
-<div class="sidebar-header">📚 后湖AI课</div>
+<div class="sidebar-header"><span>📚 后湖AI课</span><button class="sidebar-close" onclick="toggleMenu()" aria-label="关闭菜单">✕</button></div>
 <div class="nav-section">魂篇</div>
 <a class="nav-link" href="#lesson-1" data-lesson="1"><span class="nav-dot" style="background:#3b82f6"></span>魂 L1 AI的四次进化</a>
 <a class="nav-link" href="#lesson-2" data-lesson="2"><span class="nav-dot" style="background:#3b82f6"></span>魂 L2 AI能做什么与不能做什么</a>
@@ -156,18 +203,47 @@ body{font-family:"Noto Sans SC","WenQuanYi Micro Hei","PingFang SC","Microsoft Y
 </nav>
 
 <main class="main">
-<div class="hero">
-<h1>后湖AI课</h1>
-<p>让我来助你成为AI高手，成为可AI驱动的超级个体<br>复杂非我所愿，知识平权才是目标</p>
-<p class="hero-signature">—— 关门弟子张无忌</p>
-<div class="hero-tags">
-<span class="hero-tag" style="background:#dbeafe;color:#2563eb">认知升级</span>
-<span class="hero-tag" style="background:#ede9fe;color:#7c3aed">原理通透</span>
-<span class="hero-tag" style="background:#d1fae5;color:#059669">实战技巧</span>
-<span class="hero-tag" style="background:#fef3c7;color:#d97706">动手构建</span>
-<span class="hero-tag" style="background:#fce7f3;color:#db2777">Skill生态</span>
-<span class="hero-tag" style="background:#cffafe;color:#0891b2">Agent智能</span>
-</div>
+<div class="hero-dark">
+  <!-- Background particles -->
+  <canvas class="hero-canvas" id="heroCanvas"></canvas>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-orb hero-orb-3"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-scan"></div>
+  
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      <span class="hero-badge-text">AI-Powered Education</span>
+    </div>
+    
+    <div class="hero-title-wrap">
+      <div class="hero-side-line hero-side-left"><div class="hero-energy"></div></div>
+      <div style="display:inline-block">
+        <h1 class="hero-neon-title">
+          <span class="hero-char" style="color:#F472B6;text-shadow:0 0 10px rgba(244,114,182,0.5),0 0 30px rgba(244,114,182,0.2),3px 3px 0 rgba(244,114,182,0.25)">后</span><span class="hero-char" style="color:#22D3EE;text-shadow:0 0 10px rgba(34,211,238,0.5),0 0 30px rgba(34,211,238,0.2),3px 3px 0 rgba(34,211,238,0.25)">湖</span><span class="hero-char" style="color:#A78BFA;text-shadow:0 0 10px rgba(167,139,250,0.5),0 0 30px rgba(167,139,250,0.2),3px 3px 0 rgba(167,139,250,0.25);font-style:italic;letter-spacing:-2px">A</span><span class="hero-char" style="color:#FBBF24;text-shadow:0 0 10px rgba(251,191,36,0.5),0 0 30px rgba(251,191,36,0.2),3px 3px 0 rgba(251,191,36,0.25);font-style:italic;letter-spacing:-2px">I</span><span class="hero-char" style="color:#34D399;text-shadow:0 0 10px rgba(52,211,153,0.5),0 0 30px rgba(52,211,153,0.2),3px 3px 0 rgba(52,211,153,0.25)">课</span>
+        </h1>
+        <span class="hero-rainbow-line"></span>
+      </div>
+      <div class="hero-side-line hero-side-right"><div class="hero-energy"></div></div>
+    </div>
+    
+    <p class="hero-sub-dark">
+      <span class="hero-sub-line">我来助你成为AI高手，成为驱动AI的超级个体</span>
+      <span class="hero-sub-line">复杂非我所愿，知识平权才是目标</span>
+    </p>
+    <p class="hero-sig-dark">—— 关门弟子张无忌</p>
+    
+    <div class="hero-tags-dark">
+      <span class="hero-tag" style="background:rgba(59,130,246,0.15);color:#60a5fa;border:1px solid rgba(59,130,246,0.3)">魂篇 · 认知</span>
+      <span class="hero-tag" style="background:rgba(139,92,246,0.15);color:#a78bfa;border:1px solid rgba(139,92,246,0.3)">骨篇 · 原理</span>
+      <span class="hero-tag" style="background:rgba(16,185,129,0.15);color:#34d399;border:1px solid rgba(16,185,129,0.3)">身 · 应用</span>
+      <span class="hero-tag" style="background:rgba(245,158,11,0.15);color:#fbbf24;border:1px solid rgba(245,158,11,0.3)">皮 · 构建</span>
+      <span class="hero-tag" style="background:rgba(236,72,153,0.15);color:#f472b6;border:1px solid rgba(236,72,153,0.3)">SKILL</span>
+      <span class="hero-tag" style="background:rgba(6,182,212,0.15);color:#22d3ee;border:1px solid rgba(6,182,212,0.3)">AGENT</span>
+    </div>
+  </div>
 </div>
 <div class="toc" id="toc">
 <h2>课程目录</h2>
@@ -2104,7 +2180,7 @@ description: 当用户需要生成周报时，根据本周工作记录和下周�
 </div>
 
 <div class="footer">
-<p>后湖AI课 · 让我来助你成为AI高手 · 2026版</p>
+<p>后湖AI课 · 我来助你成为AI高手 · 2026版</p>
 <p>知识平权 · 复杂非我所愿 · 关门弟子张无忌</p>
 </div>
 </main>
@@ -2159,8 +2235,8 @@ function renderTOC() {
   const container = document.getElementById('tocGrid');
   if (!container) return;
   let html = '';
-  tocModules.forEach(mod => {
-    html += '<div class="toc-group">';
+  tocModules.forEach((mod, idx) => {
+    html += '<div class="toc-group" id="toc-group-' + idx + '" data-module-idx="' + idx + '">';
     html += '<div class="toc-group-title" style="color:' + mod.color + '">';
     html += '<span class="group-dot" style="background:' + mod.color + '"></span>';
     html += mod.name + '</div>';
@@ -2178,6 +2254,15 @@ function renderTOC() {
   container.innerHTML = html;
 }
 
+// ===== Toast =====
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  if (!toast) return;
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => { toast.classList.remove('show'); }, 1000);
+}
+
 // ===== Copy Prompt Function =====
 function copyPrompt(btn) {
   const box = btn.closest('.prompt-box');
@@ -2188,6 +2273,7 @@ function copyPrompt(btn) {
     navigator.clipboard.writeText(text).then(() => {
       btn.textContent = '已复制';
       btn.classList.add('copied');
+      showToast('复制成功 ✅');
       setTimeout(() => { btn.textContent = '复制'; btn.classList.remove('copied'); }, 2000);
     });
   } else {
@@ -2195,6 +2281,7 @@ function copyPrompt(btn) {
     ta.value = text; ta.style.cssText = 'position:fixed;opacity:0';
     document.body.appendChild(ta); ta.select();
     try { document.execCommand('copy'); btn.textContent = '已复制'; btn.classList.add('copied');
+      showToast('复制成功 ✅');
       setTimeout(() => { btn.textContent = '复制'; btn.classList.remove('copied'); }, 2000);
     } catch(e) {}
     document.body.removeChild(ta);
@@ -2215,10 +2302,14 @@ window.addEventListener('scroll', () => {
   // Active nav link
   const cards = document.querySelectorAll('.card[id^="lesson-"]');
   let activeId = null;
+  let activeModuleId = null;
   cards.forEach(card => {
     const rect = card.getBoundingClientRect();
     if (rect.top <= 150 && rect.bottom > 150) {
       activeId = card.id;
+      // Find parent module
+      const mod = card.closest('.module');
+      if (mod) activeModuleId = mod.id;
     }
   });
   document.querySelectorAll('.nav-link').forEach(link => {
@@ -2231,6 +2322,18 @@ window.addEventListener('scroll', () => {
       }
     }
   });
+
+  // Highlight active TOC module group
+  const moduleMap = {'module-1':0,'module-2':1,'module-3':2,'module-4':3,'module-5':4,'module-6':5};
+  document.querySelectorAll('.toc-group').forEach(g => g.classList.remove('active'));
+  if (activeModuleId && moduleMap[activeModuleId] !== undefined) {
+    const activeGroup = document.getElementById('toc-group-' + moduleMap[activeModuleId]);
+    if (activeGroup) activeGroup.classList.add('active');
+  } else {
+    // Default: highlight first group if no card is in view yet
+    const firstGroup = document.getElementById('toc-group-0');
+    if (firstGroup) firstGroup.classList.add('active');
+  }
 });
 
 // ===== Mobile Menu Toggle =====
@@ -2250,6 +2353,605 @@ document.querySelectorAll('.nav-link').forEach(link => {
 
 // Initialize
 renderTOC();
+
+// ===== Cosmic Particle System =====
+(function() {
+  const canvas = document.getElementById('heroCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let animId;
+  let isVisible = true;
+  let mouseX = -1000, mouseY = -1000;
+  let mouseActive = false;
+
+  function resize() {
+    const parent = canvas.parentElement;
+    canvas.width = parent.offsetWidth;
+    canvas.height = parent.offsetHeight;
+  }
+
+  // ============ LAYER 1: Deep space stars (far, tiny, slow twinkle) ============
+  const deepStars = [];
+  const DEEP_STAR_COUNT = 180;
+  for (let i = 0; i < DEEP_STAR_COUNT; i++) {
+    deepStars.push({
+      x: Math.random(),
+      y: Math.random(),
+      size: Math.random() * 0.8 + 0.2,
+      baseAlpha: Math.random() * 0.3 + 0.1,
+      twinkleSpeed: Math.random() * 0.015 + 0.003,
+      twinkleOffset: Math.random() * Math.PI * 2
+    });
+  }
+
+  // ============ LAYER 2: Mid stars (medium size, more visible) ============
+  const midStars = [];
+  const MID_STAR_COUNT = 100;
+  const starColors = [
+    'rgba(255,255,255,',
+    'rgba(199,210,254,',
+    'rgba(167,139,250,',
+    'rgba(147,197,253,',
+    'rgba(244,114,182,',
+    'rgba(52,211,153,',
+    'rgba(251,191,36,'
+  ];
+  for (let i = 0; i < MID_STAR_COUNT; i++) {
+    midStars.push({
+      x: Math.random(),
+      y: Math.random(),
+      size: Math.random() * 1.2 + 0.5,
+      baseAlpha: Math.random() * 0.5 + 0.3,
+      twinkleSpeed: Math.random() * 0.025 + 0.008,
+      twinkleOffset: Math.random() * Math.PI * 2,
+      color: starColors[Math.floor(Math.random() * starColors.length)],
+      hasCross: Math.random() > 0.7,
+      flarePhase: Math.random() * Math.PI * 2,
+      flareSpeed: Math.random() * 0.02 + 0.005
+    });
+  }
+
+  // ============ LAYER 3: Bright stars (large, with glow, rare) ============
+  const brightStars = [];
+  const BRIGHT_COUNT = 18;
+  for (let i = 0; i < BRIGHT_COUNT; i++) {
+    brightStars.push({
+      x: Math.random(),
+      y: Math.random(),
+      size: Math.random() * 1.5 + 1.5,
+      baseAlpha: Math.random() * 0.3 + 0.5,
+      twinkleSpeed: Math.random() * 0.02 + 0.005,
+      twinkleOffset: Math.random() * Math.PI * 2,
+      color: starColors[Math.floor(Math.random() * starColors.length)],
+      pulseSize: Math.random() * 8 + 6,
+      pulseSpeed: Math.random() * 0.015 + 0.005,
+      pulseOffset: Math.random() * Math.PI * 2
+    });
+  }
+
+  // ============ Nebula clouds (background color blobs) ============
+  const nebulae = [
+    { x: 0.2, y: 0.3, size: 0.5, color: 'rgba(91,95,239,', alpha: 0.08, driftSpeed: 0.00003 },
+    { x: 0.75, y: 0.2, size: 0.4, color: 'rgba(139,92,246,', alpha: 0.07, driftSpeed: 0.00004 },
+    { x: 0.5, y: 0.7, size: 0.6, color: 'rgba(6,182,212,', alpha: 0.05, driftSpeed: 0.000025 },
+    { x: 0.85, y: 0.65, size: 0.35, color: 'rgba(236,72,153,', alpha: 0.06, driftSpeed: 0.000035 }
+  ];
+
+  // ============ Floating dust / particles ============
+  const dustParticles = [];
+  const DUST_COUNT = 35;
+  const dustColors = [
+    'rgba(139,92,246,', 'rgba(91,95,239,', 'rgba(6,182,212,',
+    'rgba(244,114,182,', 'rgba(52,211,153,', 'rgba(251,191,36,'
+  ];
+  function createDust() {
+    return {
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.25,
+      vy: (Math.random() - 0.5) * 0.25 - 0.1,
+      size: Math.random() * 1.2 + 0.4,
+      color: dustColors[Math.floor(Math.random() * dustColors.length)],
+      alpha: Math.random() * 0.3 + 0.05,
+      wobblePhase: Math.random() * Math.PI * 2,
+      wobbleSpeed: Math.random() * 0.02 + 0.01
+    };
+  }
+
+  // ============ Shooting stars ============
+  const shootingStars = [];
+  function spawnShootingStar() {
+    const fromLeft = Math.random() > 0.5;
+    const startY = Math.random() * canvas.height * 0.6;
+    const angle = Math.random() * 0.25 + 0.15;
+    const speed = Math.random() * 6 + 5;
+    const hueColors = [
+      ['rgba(255,255,255,', 'rgba(167,139,250,', 'rgba(139,92,246,'],
+      ['rgba(255,255,255,', 'rgba(96,165,250,', 'rgba(59,130,246,'],
+      ['rgba(255,255,255,', 'rgba(244,114,182,', 'rgba(236,72,153,'],
+      ['rgba(255,255,255,', 'rgba(52,211,153,', 'rgba(16,185,129,']
+    ];
+    const palette = hueColors[Math.floor(Math.random() * hueColors.length)];
+    shootingStars.push({
+      x: fromLeft ? -80 : canvas.width + 80,
+      y: startY,
+      vx: fromLeft ? speed * Math.cos(angle) : -speed * Math.cos(angle),
+      vy: speed * Math.sin(angle),
+      length: Math.random() * 100 + 80,
+      life: 1,
+      decay: Math.random() * 0.008 + 0.004,
+      width: Math.random() * 1.5 + 1,
+      palette: palette,
+      sparkles: []
+    });
+  }
+
+  // ============ Star bursts (occasional bright flashes) ============
+  const bursts = [];
+  function spawnBurst() {
+    bursts.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height * 0.7,
+      radius: 0,
+      maxRadius: Math.random() * 20 + 10,
+      life: 1,
+      decay: Math.random() * 0.015 + 0.008,
+      color: starColors[Math.floor(Math.random() * starColors.length)]
+    });
+  }
+
+  // ============ Mouse ripple effects ============
+  const ripples = [];
+  function spawnRipple(x, y) {
+    ripples.push({
+      x: x, y: y,
+      radius: 0,
+      maxRadius: 80,
+      life: 1,
+      decay: 0.02
+    });
+  }
+
+  // ============ Light Streams (data rain / flowing light beams) ============
+  const lightStreams = [];
+  const STREAM_COUNT = 12;
+  const streamPalettes = [
+    ['rgba(139,92,246,','rgba(91,95,239,'],
+    ['rgba(6,182,212,','rgba(34,211,238,'],
+    ['rgba(99,102,241,','rgba(139,92,246,'],
+    ['rgba(59,130,246,','rgba(96,165,250,'],
+    ['rgba(168,85,247,','rgba(192,132,252,']
+  ];
+  function createStream() {
+    const pal = streamPalettes[Math.floor(Math.random() * streamPalettes.length)];
+    const w = Math.random() * 1.5 + 0.5;
+    return {
+      x: Math.random() * canvas.width,
+      y: Math.random() * -canvas.height * 1.5,
+      width: w,
+      speed: Math.random() * 2.5 + 1,
+      length: Math.random() * 200 + 120,
+      alpha: Math.random() * 0.25 + 0.08,
+      palette: pal,
+      wobbleAmp: Math.random() * 15 + 5,
+      wobbleSpeed: Math.random() * 0.01 + 0.003,
+      wobbleOffset: Math.random() * Math.PI * 2,
+      headGlow: Math.random() * 6 + 3
+    };
+  }
+  function resetStream(s) {
+    const pal = streamPalettes[Math.floor(Math.random() * streamPalettes.length)];
+    s.x = Math.random() * canvas.width;
+    s.y = Math.random() * -400 - 200;
+    s.width = Math.random() * 1.5 + 0.5;
+    s.speed = Math.random() * 2.5 + 1;
+    s.length = Math.random() * 200 + 120;
+    s.alpha = Math.random() * 0.25 + 0.08;
+    s.palette = pal;
+    s.wobbleAmp = Math.random() * 15 + 5;
+    s.wobbleSpeed = Math.random() * 0.01 + 0.003;
+    s.wobbleOffset = Math.random() * Math.PI * 2;
+    s.headGlow = Math.random() * 6 + 3;
+  }
+
+  // ============ INIT ============
+  function init() {
+    resize();
+    dustParticles.length = 0;
+    for (let i = 0; i < DUST_COUNT; i++) dustParticles.push(createDust());
+    lightStreams.length = 0;
+    for (let i = 0; i < STREAM_COUNT; i++) lightStreams.push(createStream());
+    // Spawn a few shooting stars at start
+    for (let i = 0; i < 2; i++) {
+      setTimeout(() => { if (canvas.width > 0) spawnShootingStar(); }, i * 1500);
+    }
+  }
+
+  // ============ DRAW FUNCTIONS ============
+  function drawNebulae(time) {
+    for (const n of nebulae) {
+      const driftX = Math.sin(time * n.driftSpeed * 100) * 0.05;
+      const driftY = Math.cos(time * n.driftSpeed * 80) * 0.04;
+      const nx = (n.x + driftX) * canvas.width;
+      const ny = (n.y + driftY) * canvas.height;
+      const ns = n.size * Math.max(canvas.width, canvas.height);
+      const grad = ctx.createRadialGradient(nx, ny, 0, nx, ny, ns);
+      grad.addColorStop(0, n.color + n.alpha + ')');
+      grad.addColorStop(0.5, n.color + (n.alpha * 0.5) + ')');
+      grad.addColorStop(1, n.color + '0)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(nx - ns, ny - ns, ns * 2, ns * 2);
+    }
+  }
+
+  function drawDeepStars(time) {
+    for (const s of deepStars) {
+      const twinkle = Math.sin(time * s.twinkleSpeed * 100 + s.twinkleOffset);
+      const alpha = s.baseAlpha + twinkle * 0.08;
+      ctx.beginPath();
+      ctx.arc(s.x * canvas.width, s.y * canvas.height, s.size, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(200,210,240,' + Math.max(0.05, alpha) + ')';
+      ctx.fill();
+    }
+  }
+
+  function drawMidStars(time) {
+    for (const s of midStars) {
+      const twinkle = Math.sin(time * s.twinkleSpeed * 100 + s.twinkleOffset);
+      const flare = Math.sin(time * s.flareSpeed * 100 + s.flarePhase) * 0.1;
+      const alpha = Math.max(0.1, Math.min(0.95, s.baseAlpha + twinkle * 0.2 + flare));
+      const px = s.x * canvas.width;
+      const py = s.y * canvas.height;
+
+      // Mouse attraction effect
+      if (mouseActive) {
+        const dx = px - mouseX;
+        const dy = py - mouseY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 120) {
+          const force = (1 - dist / 120) * 3;
+          ctx.beginPath();
+          ctx.arc(px + (dx / dist) * force, py + (dy / dist) * force, s.size, 0, Math.PI * 2);
+        } else {
+          ctx.beginPath();
+          ctx.arc(px, py, s.size, 0, Math.PI * 2);
+        }
+      } else {
+        ctx.beginPath();
+        ctx.arc(px, py, s.size, 0, Math.PI * 2);
+      }
+      ctx.fillStyle = s.color + alpha + ')';
+      ctx.fill();
+
+      // Cross flare for some stars
+      if (s.hasCross) {
+        const flareAlpha = alpha * 0.25;
+        const flareLen = s.size * (4 + flare * 20);
+        ctx.save();
+        ctx.globalAlpha = flareAlpha;
+        ctx.strokeStyle = s.color + '0.6)';
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(px - flareLen, py);
+        ctx.lineTo(px + flareLen, py);
+        ctx.moveTo(px, py - flareLen);
+        ctx.lineTo(px, py + flareLen);
+        ctx.stroke();
+        ctx.restore();
+      }
+    }
+  }
+
+  function drawBrightStars(time) {
+    for (const s of brightStars) {
+      const twinkle = Math.sin(time * s.twinkleSpeed * 100 + s.twinkleOffset);
+      const pulse = Math.sin(time * s.pulseSpeed * 100 + s.pulseOffset);
+      const alpha = Math.max(0.3, s.baseAlpha + twinkle * 0.25);
+      const px = s.x * canvas.width;
+      const py = s.y * canvas.height;
+      const glowSize = s.pulseSize + pulse * 3;
+
+      // Outer glow
+      const grad = ctx.createRadialGradient(px, py, 0, px, py, glowSize * 3);
+      grad.addColorStop(0, s.color + (alpha * 0.4) + ')');
+      grad.addColorStop(0.3, s.color + (alpha * 0.15) + ')');
+      grad.addColorStop(1, s.color + '0)');
+      ctx.beginPath();
+      ctx.arc(px, py, glowSize * 3, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.fill();
+
+      // Core
+      ctx.beginPath();
+      ctx.arc(px, py, s.size, 0, Math.PI * 2);
+      ctx.fillStyle = s.color + Math.min(1, alpha + 0.2) + ')';
+      ctx.fill();
+
+      // Cross rays
+      ctx.save();
+      ctx.globalAlpha = alpha * 0.35;
+      ctx.strokeStyle = s.color + '0.5)';
+      ctx.lineWidth = 0.8;
+      const rayLen = glowSize * 1.5;
+      ctx.beginPath();
+      ctx.moveTo(px - rayLen, py);
+      ctx.lineTo(px + rayLen, py);
+      ctx.moveTo(px, py - rayLen);
+      ctx.lineTo(px, py + rayLen);
+      ctx.stroke();
+      ctx.restore();
+    }
+  }
+
+  function drawShootingStars() {
+    for (const s of shootingStars) {
+      const tailX = s.x - s.vx * (s.length / Math.abs(s.vx || 1));
+      const tailY = s.y - s.vy * (s.length / Math.abs(s.vx || 1));
+      const grad = ctx.createLinearGradient(s.x, s.y, tailX, tailY);
+      grad.addColorStop(0, s.palette[0] + s.life + ')');
+      grad.addColorStop(0.2, s.palette[1] + (s.life * 0.7) + ')');
+      grad.addColorStop(0.6, s.palette[2] + (s.life * 0.3) + ')');
+      grad.addColorStop(1, s.palette[2] + '0)');
+      ctx.beginPath();
+      ctx.moveTo(s.x, s.y);
+      ctx.lineTo(tailX, tailY);
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = s.width;
+      ctx.lineCap = 'round';
+      ctx.stroke();
+
+      // Head bright point
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.width * 1.2, 0, Math.PI * 2);
+      const headGrad = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.width * 3);
+      headGrad.addColorStop(0, 'rgba(255,255,255,' + s.life + ')');
+      headGrad.addColorStop(0.5, s.palette[1] + (s.life * 0.5) + ')');
+      headGrad.addColorStop(1, s.palette[2] + '0)');
+      ctx.fillStyle = headGrad;
+      ctx.fill();
+
+      // Sparkle trail
+      if (Math.random() < 0.3) {
+        s.sparkles.push({
+          x: s.x - s.vx * 0.3 + (Math.random() - 0.5) * 10,
+          y: s.y - s.vy * 0.3 + (Math.random() - 0.5) * 10,
+          size: Math.random() * 1.2 + 0.3,
+          life: 1,
+          decay: Math.random() * 0.03 + 0.02
+        });
+      }
+      for (let i = s.sparkles.length - 1; i >= 0; i--) {
+        const sp = s.sparkles[i];
+        ctx.beginPath();
+        ctx.arc(sp.x, sp.y, sp.size * sp.life, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255,255,255,' + (sp.life * 0.6) + ')';
+        ctx.fill();
+        sp.life -= sp.decay;
+        if (sp.life <= 0) s.sparkles.splice(i, 1);
+      }
+    }
+  }
+
+  function drawBursts() {
+    for (let i = bursts.length - 1; i >= 0; i--) {
+      const b = bursts[i];
+      ctx.save();
+      ctx.globalAlpha = b.life * 0.6;
+      ctx.strokeStyle = b.color + b.life + ')';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.arc(b.x, b.y, b.radius, 0, Math.PI * 2);
+      ctx.stroke();
+      // Inner glow
+      const grad = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.radius);
+      grad.addColorStop(0, b.color + (b.life * 0.3) + ')');
+      grad.addColorStop(1, b.color + '0)');
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(b.x, b.y, b.radius, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+
+  function drawLightStreams(time) {
+    for (const s of lightStreams) {
+      const wobbleX = Math.sin(time * s.wobbleSpeed * 100 + s.wobbleOffset) * s.wobbleAmp;
+      const px = s.x + wobbleX;
+      const tailY = s.y - s.length;
+
+      // Main beam gradient (bright head fading to transparent tail)
+      const grad = ctx.createLinearGradient(px, s.y, px + wobbleX * 0.3, tailY);
+      grad.addColorStop(0, s.palette[0] + s.alpha + ')');
+      grad.addColorStop(0.15, s.palette[1] + (s.alpha * 0.7) + ')');
+      grad.addColorStop(0.5, s.palette[0] + (s.alpha * 0.3) + ')');
+      grad.addColorStop(1, s.palette[0] + '0)');
+
+      ctx.beginPath();
+      ctx.moveTo(px, s.y);
+      // Use slight curve for organic feel
+      const cpx = px + wobbleX * 0.5;
+      const cpy = (s.y + tailY) / 2;
+      ctx.quadraticCurveTo(cpx, cpy, px + wobbleX * 0.3, tailY);
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = s.width;
+      ctx.lineCap = 'round';
+      ctx.stroke();
+
+      // Bright head glow
+      const headGrad = ctx.createRadialGradient(px, s.y, 0, px, s.y, s.headGlow);
+      headGrad.addColorStop(0, s.palette[0] + (s.alpha * 1.5) + ')');
+      headGrad.addColorStop(0.5, s.palette[1] + (s.alpha * 0.5) + ')');
+      headGrad.addColorStop(1, s.palette[0] + '0)');
+      ctx.beginPath();
+      ctx.arc(px, s.y, s.headGlow, 0, Math.PI * 2);
+      ctx.fillStyle = headGrad;
+      ctx.fill();
+
+      // Small sparkles falling off the stream
+      if (Math.random() < 0.04) {
+        ctx.beginPath();
+        ctx.arc(px + (Math.random() - 0.5) * 10, s.y - Math.random() * 30, Math.random() * 0.8 + 0.2, 0, Math.PI * 2);
+        ctx.fillStyle = s.palette[0] + (s.alpha * 0.8) + ')';
+        ctx.fill();
+      }
+    }
+  }
+
+  function drawRipples() {
+    for (let i = ripples.length - 1; i >= 0; i--) {
+      const r = ripples[i];
+      ctx.save();
+      ctx.globalAlpha = r.life * 0.4;
+      ctx.strokeStyle = 'rgba(167,139,250,' + r.life + ')';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.arc(r.x, r.y, r.radius, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.restore();
+    }
+  }
+
+  function drawDust(time) {
+    for (const p of dustParticles) {
+      const wobble = Math.sin(time * p.wobbleSpeed * 100 + p.wobblePhase) * 0.5;
+      const px = p.x + wobble;
+      ctx.beginPath();
+      ctx.arc(px, p.y, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = p.color + p.alpha + ')';
+      ctx.fill();
+      // Very soft glow
+      ctx.beginPath();
+      ctx.arc(px, p.y, p.size * 3, 0, Math.PI * 2);
+      const grad = ctx.createRadialGradient(px, p.y, 0, px, p.y, p.size * 3);
+      grad.addColorStop(0, p.color + (p.alpha * 0.1) + ')');
+      grad.addColorStop(1, p.color + '0)');
+      ctx.fillStyle = grad;
+      ctx.fill();
+    }
+  }
+
+  // ============ UPDATE FUNCTIONS ============
+  function update() {
+    const time = Date.now() * 0.001;
+
+    // Dust particles
+    for (const p of dustParticles) {
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0) p.x = canvas.width;
+      if (p.x > canvas.width) p.x = 0;
+      if (p.y < 0) { p.y = canvas.height; p.x = Math.random() * canvas.width; }
+      if (p.y > canvas.height) { p.y = 0; p.x = Math.random() * canvas.width; }
+    }
+
+    // Shooting stars
+    for (let i = shootingStars.length - 1; i >= 0; i--) {
+      const s = shootingStars[i];
+      s.x += s.vx;
+      s.y += s.vy;
+      s.life -= s.decay;
+      if (s.life <= 0 || s.x < -200 || s.x > canvas.width + 200 || s.y > canvas.height + 200) {
+        shootingStars.splice(i, 1);
+      }
+    }
+    // Spawn shooting stars more frequently
+    if (Math.random() < 0.012) spawnShootingStar();
+
+    // Bursts
+    for (let i = bursts.length - 1; i >= 0; i--) {
+      const b = bursts[i];
+      b.radius += (b.maxRadius - b.radius) * 0.08;
+      b.life -= b.decay;
+      if (b.life <= 0) bursts.splice(i, 1);
+    }
+    if (Math.random() < 0.005) spawnBurst();
+
+    // Ripples
+    for (let i = ripples.length - 1; i >= 0; i--) {
+      const r = ripples[i];
+      r.radius += (r.maxRadius - r.radius) * 0.06;
+      r.life -= r.decay;
+      if (r.life <= 0) ripples.splice(i, 1);
+    }
+
+    // Light streams
+    for (const s of lightStreams) {
+      s.y += s.speed;
+      if (s.y - s.length > canvas.height + 50) {
+        resetStream(s);
+      }
+    }
+  }
+
+  // ============ MAIN DRAW ============
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const time = Date.now() * 0.001;
+
+    drawNebulae(time);
+    drawDeepStars(time);
+    drawMidStars(time);
+    drawBrightStars(time);
+    drawDust(time);
+    drawLightStreams(time);
+    drawShootingStars();
+    drawBursts();
+    drawRipples();
+  }
+
+  // ============ ANIMATION LOOP ============
+  function animate() {
+    if (!isVisible) { animId = requestAnimationFrame(animate); return; }
+    update();
+    draw();
+    animId = requestAnimationFrame(animate);
+  }
+
+  // ============ MOUSE INTERACTION ============
+  canvas.addEventListener('mousemove', function(e) {
+    const rect = canvas.getBoundingClientRect();
+    mouseX = e.clientX - rect.left;
+    mouseY = e.clientY - rect.top;
+    mouseActive = true;
+  });
+  canvas.addEventListener('mouseleave', function() {
+    mouseActive = false;
+    mouseX = -1000;
+    mouseY = -1000;
+  });
+  canvas.addEventListener('click', function(e) {
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    spawnRipple(x, y);
+    spawnBurst();
+    bursts[bursts.length - 1].x = x;
+    bursts[bursts.length - 1].y = y;
+  });
+  // Touch support
+  canvas.addEventListener('touchmove', function(e) {
+    if (e.touches.length > 0) {
+      const rect = canvas.getBoundingClientRect();
+      mouseX = e.touches[0].clientX - rect.left;
+      mouseY = e.touches[0].clientY - rect.top;
+      mouseActive = true;
+    }
+  }, { passive: true });
+  canvas.addEventListener('touchend', function() {
+    mouseActive = false;
+  });
+
+  // ============ VISIBILITY OPTIMIZATION ============
+  const observer = new IntersectionObserver(function(entries) {
+    isVisible = entries[0].isIntersecting;
+  }, { threshold: 0.1 });
+  observer.observe(canvas.parentElement);
+
+  window.addEventListener('resize', resize);
+  init();
+  animate();
+})();
 </script>
 </body>
 </html>
