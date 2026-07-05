@@ -24,10 +24,10 @@ body{font-family:"Noto Sans SC","WenQuanYi Micro Hei","PingFang SC","Microsoft Y
 .nav-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
 .main{margin-left:220px;flex:1;max-width:100%;padding:40px 48px 80px;min-width:0}
 /* ===== Hero Dark Section ===== */
-.hero-dark{position:relative;overflow:hidden;background:#050510;padding:80px 40px 60px;text-align:center;margin-left:-48px;margin-right:-48px;margin-top:-40px}
+.hero-dark{position:relative;overflow:hidden;background:#000000;padding:80px 40px 60px;text-align:center;margin-left:-48px;margin-right:-48px;margin-top:-40px}
 .hero-dark canvas,.hero-dark .hero-orb,.hero-dark .hero-grid,.hero-dark .hero-scan{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}
-.hero-dark canvas{z-index:0}
-.hero-dark .hero-orb{border-radius:50%;filter:blur(80px);opacity:0.4;z-index:0}
+.hero-dark canvas{z-index:1}
+.hero-dark .hero-orb{border-radius:50%;filter:blur(80px);opacity:0.12;z-index:0}
 .hero-orb-1{width:400px;height:400px;background:radial-gradient(circle,#5B5FEF,transparent 70%);top:-10%;left:-5%;animation:orbFloat1 8s ease-in-out infinite}
 .hero-orb-2{width:350px;height:350px;background:radial-gradient(circle,#8B5CF6,transparent 70%);bottom:-10%;right:-5%;animation:orbFloat2 10s ease-in-out infinite}
 .hero-orb-3{width:250px;height:250px;background:radial-gradient(circle,#06B6D4,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);animation:orbFloat3 12s ease-in-out infinite;opacity:0.2}
@@ -230,8 +230,8 @@ body{font-family:"Noto Sans SC","WenQuanYi Micro Hei","PingFang SC","Microsoft Y
     </div>
     
     <p class="hero-sub-dark">
-      <span class="hero-sub-line">助你成为AI高手，成为驱动AI的超级个体</span>
-      <span class="hero-sub-line">复杂非所愿，知识平权才是目标</span>
+      <span class="hero-sub-line">我来助你成为AI高手，成为驱动AI的超级个体</span>
+      <span class="hero-sub-line">复杂非我所愿，知识平权才是目标</span>
     </p>
     <p class="hero-sig-dark">—— 关门弟子张无忌</p>
     
@@ -2372,21 +2372,21 @@ renderTOC();
 
   // ============ LAYER 1: Deep space stars (far, tiny, slow twinkle) ============
   const deepStars = [];
-  const DEEP_STAR_COUNT = 180;
+  const DEEP_STAR_COUNT = 250;
   for (let i = 0; i < DEEP_STAR_COUNT; i++) {
     deepStars.push({
       x: Math.random(),
       y: Math.random(),
-      size: Math.random() * 0.8 + 0.2,
-      baseAlpha: Math.random() * 0.3 + 0.1,
-      twinkleSpeed: Math.random() * 0.015 + 0.003,
+      size: Math.random() * 1.0 + 0.3,
+      baseAlpha: Math.random() * 0.5 + 0.2,
+      twinkleSpeed: Math.random() * 0.02 + 0.005,
       twinkleOffset: Math.random() * Math.PI * 2
     });
   }
 
   // ============ LAYER 2: Mid stars (medium size, more visible) ============
   const midStars = [];
-  const MID_STAR_COUNT = 100;
+  const MID_STAR_COUNT = 150;
   const starColors = [
     'rgba(255,255,255,',
     'rgba(199,210,254,',
@@ -2400,12 +2400,12 @@ renderTOC();
     midStars.push({
       x: Math.random(),
       y: Math.random(),
-      size: Math.random() * 1.2 + 0.5,
-      baseAlpha: Math.random() * 0.5 + 0.3,
-      twinkleSpeed: Math.random() * 0.025 + 0.008,
+      size: Math.random() * 1.5 + 0.6,
+      baseAlpha: Math.random() * 0.6 + 0.4,
+      twinkleSpeed: Math.random() * 0.03 + 0.01,
       twinkleOffset: Math.random() * Math.PI * 2,
       color: starColors[Math.floor(Math.random() * starColors.length)],
-      hasCross: Math.random() > 0.7,
+      hasCross: Math.random() > 0.5,
       flarePhase: Math.random() * Math.PI * 2,
       flareSpeed: Math.random() * 0.02 + 0.005
     });
@@ -2413,17 +2413,17 @@ renderTOC();
 
   // ============ LAYER 3: Bright stars (large, with glow, rare) ============
   const brightStars = [];
-  const BRIGHT_COUNT = 18;
+  const BRIGHT_COUNT = 25;
   for (let i = 0; i < BRIGHT_COUNT; i++) {
     brightStars.push({
       x: Math.random(),
       y: Math.random(),
-      size: Math.random() * 1.5 + 1.5,
-      baseAlpha: Math.random() * 0.3 + 0.5,
+      size: Math.random() * 2.0 + 1.5,
+      baseAlpha: Math.random() * 0.4 + 0.6,
       twinkleSpeed: Math.random() * 0.02 + 0.005,
       twinkleOffset: Math.random() * Math.PI * 2,
       color: starColors[Math.floor(Math.random() * starColors.length)],
-      pulseSize: Math.random() * 8 + 6,
+      pulseSize: Math.random() * 12 + 8,
       pulseSpeed: Math.random() * 0.015 + 0.005,
       pulseOffset: Math.random() * Math.PI * 2
     });
@@ -2431,15 +2431,15 @@ renderTOC();
 
   // ============ Nebula clouds (background color blobs) ============
   const nebulae = [
-    { x: 0.2, y: 0.3, size: 0.5, color: 'rgba(91,95,239,', alpha: 0.08, driftSpeed: 0.00003 },
-    { x: 0.75, y: 0.2, size: 0.4, color: 'rgba(139,92,246,', alpha: 0.07, driftSpeed: 0.00004 },
-    { x: 0.5, y: 0.7, size: 0.6, color: 'rgba(6,182,212,', alpha: 0.05, driftSpeed: 0.000025 },
-    { x: 0.85, y: 0.65, size: 0.35, color: 'rgba(236,72,153,', alpha: 0.06, driftSpeed: 0.000035 }
+    { x: 0.2, y: 0.3, size: 0.5, color: 'rgba(91,95,239,', alpha: 0.12, driftSpeed: 0.00003 },
+    { x: 0.75, y: 0.2, size: 0.4, color: 'rgba(139,92,246,', alpha: 0.10, driftSpeed: 0.00004 },
+    { x: 0.5, y: 0.7, size: 0.6, color: 'rgba(6,182,212,', alpha: 0.08, driftSpeed: 0.000025 },
+    { x: 0.85, y: 0.65, size: 0.35, color: 'rgba(236,72,153,', alpha: 0.09, driftSpeed: 0.000035 }
   ];
 
   // ============ Floating dust / particles ============
   const dustParticles = [];
-  const DUST_COUNT = 35;
+  const DUST_COUNT = 50;
   const dustColors = [
     'rgba(139,92,246,', 'rgba(91,95,239,', 'rgba(6,182,212,',
     'rgba(244,114,182,', 'rgba(52,211,153,', 'rgba(251,191,36,'
@@ -2452,7 +2452,7 @@ renderTOC();
       vy: (Math.random() - 0.5) * 0.25 - 0.1,
       size: Math.random() * 1.2 + 0.4,
       color: dustColors[Math.floor(Math.random() * dustColors.length)],
-      alpha: Math.random() * 0.3 + 0.05,
+      alpha: Math.random() * 0.4 + 0.1,
       wobblePhase: Math.random() * Math.PI * 2,
       wobbleSpeed: Math.random() * 0.02 + 0.01
     };
@@ -2464,7 +2464,7 @@ renderTOC();
     const fromLeft = Math.random() > 0.5;
     const startY = Math.random() * canvas.height * 0.6;
     const angle = Math.random() * 0.25 + 0.15;
-    const speed = Math.random() * 6 + 5;
+    const speed = Math.random() * 8 + 7;
     const hueColors = [
       ['rgba(255,255,255,', 'rgba(167,139,250,', 'rgba(139,92,246,'],
       ['rgba(255,255,255,', 'rgba(96,165,250,', 'rgba(59,130,246,'],
@@ -2477,10 +2477,10 @@ renderTOC();
       y: startY,
       vx: fromLeft ? speed * Math.cos(angle) : -speed * Math.cos(angle),
       vy: speed * Math.sin(angle),
-      length: Math.random() * 100 + 80,
+      length: Math.random() * 150 + 100,
       life: 1,
-      decay: Math.random() * 0.008 + 0.004,
-      width: Math.random() * 1.5 + 1,
+      decay: Math.random() * 0.006 + 0.003,
+      width: Math.random() * 2 + 1.5,
       palette: palette,
       sparkles: []
     });
@@ -2493,7 +2493,7 @@ renderTOC();
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height * 0.7,
       radius: 0,
-      maxRadius: Math.random() * 20 + 10,
+      maxRadius: Math.random() * 30 + 15,
       life: 1,
       decay: Math.random() * 0.015 + 0.008,
       color: starColors[Math.floor(Math.random() * starColors.length)]
@@ -2514,7 +2514,7 @@ renderTOC();
 
   // ============ Light Streams (data rain / flowing light beams) ============
   const lightStreams = [];
-  const STREAM_COUNT = 12;
+  const STREAM_COUNT = 16;
   const streamPalettes = [
     ['rgba(139,92,246,','rgba(91,95,239,'],
     ['rgba(6,182,212,','rgba(34,211,238,'],
@@ -2531,7 +2531,7 @@ renderTOC();
       width: w,
       speed: Math.random() * 2.5 + 1,
       length: Math.random() * 200 + 120,
-      alpha: Math.random() * 0.25 + 0.08,
+      alpha: Math.random() * 0.35 + 0.12,
       palette: pal,
       wobbleAmp: Math.random() * 15 + 5,
       wobbleSpeed: Math.random() * 0.01 + 0.003,
@@ -2546,7 +2546,7 @@ renderTOC();
     s.width = Math.random() * 1.5 + 0.5;
     s.speed = Math.random() * 2.5 + 1;
     s.length = Math.random() * 200 + 120;
-    s.alpha = Math.random() * 0.25 + 0.08;
+    s.alpha = Math.random() * 0.35 + 0.12;
     s.palette = pal;
     s.wobbleAmp = Math.random() * 15 + 5;
     s.wobbleSpeed = Math.random() * 0.01 + 0.003;
@@ -2562,7 +2562,7 @@ renderTOC();
     lightStreams.length = 0;
     for (let i = 0; i < STREAM_COUNT; i++) lightStreams.push(createStream());
     // Spawn a few shooting stars at start
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < 4; i++) {
       setTimeout(() => { if (canvas.width > 0) spawnShootingStar(); }, i * 1500);
     }
   }
@@ -2587,10 +2587,10 @@ renderTOC();
   function drawDeepStars(time) {
     for (const s of deepStars) {
       const twinkle = Math.sin(time * s.twinkleSpeed * 100 + s.twinkleOffset);
-      const alpha = s.baseAlpha + twinkle * 0.08;
+      const alpha = s.baseAlpha + twinkle * 0.18;
       ctx.beginPath();
       ctx.arc(s.x * canvas.width, s.y * canvas.height, s.size, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(200,210,240,' + Math.max(0.05, alpha) + ')';
+      ctx.fillStyle = 'rgba(220,230,255,' + Math.max(0.08, alpha) + ')';
       ctx.fill();
     }
   }
@@ -2598,8 +2598,8 @@ renderTOC();
   function drawMidStars(time) {
     for (const s of midStars) {
       const twinkle = Math.sin(time * s.twinkleSpeed * 100 + s.twinkleOffset);
-      const flare = Math.sin(time * s.flareSpeed * 100 + s.flarePhase) * 0.1;
-      const alpha = Math.max(0.1, Math.min(0.95, s.baseAlpha + twinkle * 0.2 + flare));
+      const flare = Math.sin(time * s.flareSpeed * 100 + s.flarePhase) * 0.2;
+      const alpha = Math.max(0.15, Math.min(0.98, s.baseAlpha + twinkle * 0.25 + flare));
       const px = s.x * canvas.width;
       const py = s.y * canvas.height;
 
@@ -2625,12 +2625,12 @@ renderTOC();
 
       // Cross flare for some stars
       if (s.hasCross) {
-        const flareAlpha = alpha * 0.25;
+        const flareAlpha = alpha * 0.4;
         const flareLen = s.size * (4 + flare * 20);
         ctx.save();
         ctx.globalAlpha = flareAlpha;
-        ctx.strokeStyle = s.color + '0.6)';
-        ctx.lineWidth = 0.5;
+        ctx.strokeStyle = s.color + '0.8)';
+        ctx.lineWidth = 0.7;
         ctx.beginPath();
         ctx.moveTo(px - flareLen, py);
         ctx.lineTo(px + flareLen, py);
@@ -2646,15 +2646,15 @@ renderTOC();
     for (const s of brightStars) {
       const twinkle = Math.sin(time * s.twinkleSpeed * 100 + s.twinkleOffset);
       const pulse = Math.sin(time * s.pulseSpeed * 100 + s.pulseOffset);
-      const alpha = Math.max(0.3, s.baseAlpha + twinkle * 0.25);
+      const alpha = Math.max(0.4, s.baseAlpha + twinkle * 0.35);
       const px = s.x * canvas.width;
       const py = s.y * canvas.height;
       const glowSize = s.pulseSize + pulse * 3;
 
       // Outer glow
       const grad = ctx.createRadialGradient(px, py, 0, px, py, glowSize * 3);
-      grad.addColorStop(0, s.color + (alpha * 0.4) + ')');
-      grad.addColorStop(0.3, s.color + (alpha * 0.15) + ')');
+      grad.addColorStop(0, s.color + (alpha * 0.55) + ')');
+      grad.addColorStop(0.3, s.color + (alpha * 0.25) + ')');
       grad.addColorStop(1, s.color + '0)');
       ctx.beginPath();
       ctx.arc(px, py, glowSize * 3, 0, Math.PI * 2);
@@ -2669,9 +2669,9 @@ renderTOC();
 
       // Cross rays
       ctx.save();
-      ctx.globalAlpha = alpha * 0.35;
-      ctx.strokeStyle = s.color + '0.5)';
-      ctx.lineWidth = 0.8;
+      ctx.globalAlpha = alpha * 0.5;
+      ctx.strokeStyle = s.color + '0.7)';
+      ctx.lineWidth = 1;
       const rayLen = glowSize * 1.5;
       ctx.beginPath();
       ctx.moveTo(px - rayLen, py);
@@ -2856,7 +2856,7 @@ renderTOC();
       }
     }
     // Spawn shooting stars more frequently
-    if (Math.random() < 0.012) spawnShootingStar();
+    if (Math.random() < 0.025) spawnShootingStar();
 
     // Bursts
     for (let i = bursts.length - 1; i >= 0; i--) {
@@ -2865,7 +2865,7 @@ renderTOC();
       b.life -= b.decay;
       if (b.life <= 0) bursts.splice(i, 1);
     }
-    if (Math.random() < 0.005) spawnBurst();
+    if (Math.random() < 0.01) spawnBurst();
 
     // Ripples
     for (let i = ripples.length - 1; i >= 0; i--) {
